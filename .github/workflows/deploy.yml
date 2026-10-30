@@ -21,20 +21,20 @@ jobs:
       APP_ENV: production
       APP_DEBUG: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # base_url is https://<owner>.github.io/<repo> by default, or the custom
       # domain once one is configured in the repo's Pages settings.
       - name: Configure Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           tools: composer
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -69,10 +69,9 @@ jobs:
           if [ -f "$dir/404/index.html" ] && [ ! -f "$dir/404.html" ]; then
             cp "$dir/404/index.html" "$dir/404.html"
           fi
-          touch "$dir/.nojekyll"
           echo "dir=$dir" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ steps.output.outputs.dir }}
 
@@ -85,4 +84,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
