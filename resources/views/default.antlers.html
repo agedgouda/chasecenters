@@ -24,7 +24,7 @@
 			<h1><strong>Map</strong></h1>
 		</div>
 	</div>
-<div class="wpb_gmaps_widget wpb_content_element vc_map_responsive"><div class="wpb_wrapper"><div class="wpb_map_wraper"><iframe loading="lazy" src="https://maps.google.com/maps?q={{ map_query | rawurlencode }}&#038;t=m&#038;z=15&#038;output=embed&#038;iwloc=near" title="{{ map_query }}" aria-label="{{ map_query }}"></iframe></div></div></div></div></div></div></div>
+<div class="wpb_gmaps_widget wpb_content_element vc_map_responsive"><div class="wpb_wrapper"><div class="wpb_map_wraper"><iframe data-src="https://maps.google.com/maps?q={{ map_query | rawurlencode }}&#038;t=m&#038;z=15&#038;output=embed&#038;iwloc=near" title="{{ map_query }}" aria-label="{{ map_query }}"></iframe><noscript><iframe loading="lazy" src="https://maps.google.com/maps?q={{ map_query | rawurlencode }}&#038;t=m&#038;z=15&#038;output=embed&#038;iwloc=near" title="{{ map_query }}" aria-label="{{ map_query }}"></iframe></noscript></div></div></div></div></div></div></div>
 {{ /if }}
 {{ if site_plan }}
 <div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
@@ -44,7 +44,7 @@
 {{ site_plan }}
 	<div  class="wpb_single_image wpb_content_element vc_align_{{ site_plan_align ?? 'left' }} wpb_content_element">
 		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper   vc_box_border_grey">{{ srcset = id | wp_srcset }}<img loading="lazy" decoding="async" width="{{ width }}" height="{{ height }}" src="{{ url }}" class="vc_single_image-img attachment-large" alt="" title="{{ title }}"{{ if srcset }} srcset="{{ srcset }}" sizes="auto, (max-width: {{ width }}px) 100vw, {{ width }}px"{{ /if }} /></div>
+			<div class="vc_single_image-wrapper   vc_box_border_grey">{{ srcset = id | wp_srcset:webp }}<img loading="lazy" decoding="async" width="{{ width }}" height="{{ height }}" src="{{ id | webp_url }}" class="vc_single_image-img attachment-large" alt="" title="{{ title }}"{{ if srcset }} srcset="{{ srcset }}" sizes="auto, (max-width: {{ width }}px) 100vw, {{ width }}px"{{ /if }} /></div>
 		</figure>
 	</div>
 {{ /site_plan }}

@@ -14,22 +14,14 @@
 	<meta property="og:url" content="{{ permalink }}" />
 	<meta property="og:site_name" content="Chase Centers" />
 	<meta name="twitter:card" content="summary_large_image" />
-<link rel='dns-prefetch' href='//fonts.googleapis.com' />
-<link rel='dns-prefetch' href='//code.ionicframework.com' />
+<link rel='preconnect' href='https://fonts.googleapis.com' />
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 {{ partial:partials/wp_styles }}
-<link rel='stylesheet' id='uxbarn-google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CPontano+Sans' media='all' />
-<link rel='stylesheet' id='uxbarn-reset-css' href='{{ link to="/theme/kose/css/reset.css" }}' media='all' />
-<link rel='stylesheet' id='uxbarn-foundation-css' href='{{ link to="/theme/kose/css/foundation.css" }}' media='all' />
-<link rel='stylesheet' id='uxbarn-ionicons2-css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' media='all' />
-<link rel='stylesheet' id='uxbarn-flexslider-css' href='{{ link to="/theme/uxbarn-portfolio/css/flexslider.css" }}' media='all' />
-<link rel='stylesheet' id='uxbarn-theme-css' href='{{ link to="/theme/kose/style.css" }}' media='all' />
-<link rel='stylesheet' id='uxbarn-theme-responsive-css' href='{{ link to="/theme/kose/css/kose-responsive.css" }}' media='all' />
-<link rel='stylesheet' id='chase-site-css' href='{{ link to="/theme/chase/site.css" }}' media='all' />
-{{ if content }}
-<link rel='stylesheet' id='wp-block-paragraph-css' href='{{ link to="/theme/wp-includes/blocks/paragraph/style.min.css" }}' media='all' />
-{{ /if }}
+<link rel='stylesheet' id='uxbarn-google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CPontano+Sans&#038;display=swap' media='all' />
+{{# Bundled and trimmed by scripts/build-theme-css.mjs #}}
+<link rel='stylesheet' id='chase-theme-css' href='{{ link to="/theme/chase/theme.css" }}' media='all' />
 {{ if map_query || site_plan }}
-<link rel='stylesheet' id='js_composer_front-css' href='{{ link to="/theme/js_composer/assets/css/js_composer.min.css" }}' media='all' />
+<link rel='stylesheet' id='js_composer_front-css' href='{{ link to="/theme/chase/vc.css" }}' media='all' />
 {{ /if }}
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 {{ partial:partials/theme_styles }}
@@ -49,8 +41,10 @@
 		<!-- Full Screen Image/Slider -->
 		<div id="full-scrn-slider-container">
 			<div id="full-scrn-slider" data-auto-rotation="5000" data-effect="crossfade" data-transition-speed="1000">
+			{{# Slides cover the screen, so "sizes" asks for enough width to fill it.
+			    Only the first image loads with the page; site.js loads the rest. #}}
 			{{ slides }}<div class="full-scrn-slide full-scrn" >
-							{{ srcset = id | wp_srcset }}<img width="{{ width }}" height="{{ height }}" src="{{ url }}" class="attachment-theme-fullscreen-image size-theme-fullscreen-image" alt="" decoding="async"{{ if first }} fetchpriority="high"{{ /if }}{{ if srcset }} srcset="{{ srcset }}" sizes="(max-width: {{ width }}px) 100vw, {{ width }}px"{{ /if }} />
+							{{ srcset = id | wp_srcset:webp }}{{ src = id | webp_url }}<img width="{{ width }}" height="{{ height }}" {{ if first }}src{{ else }}data-src{{ /if }}="{{ src }}" class="attachment-theme-fullscreen-image size-theme-fullscreen-image" alt="" decoding="async"{{ if first }} fetchpriority="high"{{ /if }}{{ if srcset }} {{ if first }}srcset{{ else }}data-srcset{{ /if }}="{{ srcset }}" sizes="max(100vw, {{ ((width / height) * 100) | round(2) }}vh)"{{ /if }} />
 						</div>{{ /slides }}
 			</div>
 			<!-- End id="full-scrn-slider" -->

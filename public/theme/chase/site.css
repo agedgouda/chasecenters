@@ -1,3 +1,35 @@
+/* Ionicons 2.0.1 (MIT), subset to the two icons the site uses. */
+@font-face {
+	font-family: "Ionicons";
+	src: url("data:font/woff2;base64,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") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+.ion-ios-arrow-up:before,
+.ion-ios-close-empty:before {
+	display: inline-block;
+	font-family: "Ionicons";
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	text-rendering: auto;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ion-ios-arrow-up:before {
+	content: "\f3d8";
+}
+
+.ion-ios-close-empty:before {
+	content: "\f404";
+}
+
 /* Native scrolling for the content panel; site.js draws the thin themed scrollbar over it. */
 #inner-content-container.chase-scroll {
 	scrollbar-width: none;

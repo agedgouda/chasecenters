@@ -11,11 +11,12 @@ use Statamic\Modifiers\Modifier;
  * Builds a WordPress-style srcset from the resized copies ("name-WxH.ext")
  * stored alongside an image, so pages pick the same files the old site did.
  *
- * Usage inside an assets loop: {{ id | wp_srcset }}
+ * Usage inside an assets loop: {{ id | wp_srcset }}, or {{ id | wp_srcset:webp }}
+ * to list each size's smaller WebP copy where one exists.
  */
 class WpSrcset extends Modifier
 {
-    public function index($value)
+    public function index($value, $params = [])
     {
         $asset = $value instanceof AssetContract ? $value : Asset::find((string) $value);
 
@@ -47,7 +48,7 @@ class WpSrcset extends Modifier
                 continue;
             }
 
-            $candidates[$width] = $disk->url($file).' '.$width.'w';
+            $candidates[$width] = $disk->url(($params[0] ?? null) === 'webp' ? WebpUrl::path($disk, $file) : $file).' '.$width.'w';
         }
 
         return count($candidates) > 1 ? implode(', ', $candidates) : '';

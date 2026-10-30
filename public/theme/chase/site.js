@@ -378,15 +378,6 @@
 
 		slides.forEach((slide, index) => {
 			Object.assign(slide.style, { position: 'absolute', inset: '0px', width: '100%', zIndex: index === 0 ? '3' : '2' });
-
-			const img = $('img', slide);
-
-			if (img?.getAttribute('src')) {
-				const src = img.getAttribute('src');
-				slide.style.backgroundImage = 'url("' + src + '")';
-				slide.dataset.imageUrl = src;
-				img.remove();
-			}
 		});
 
 		$('#loading-bg').style.display = 'none';
@@ -408,6 +399,7 @@
 		const links = slides.length < 2 ? [] : slides.map((slide, index) => {
 			const link = document.createElement('a');
 			link.href = 'javascript:;' + (index + 1);
+			link.setAttribute('aria-label', 'Show image ' + (index + 1));
 			link.addEventListener('click', (event) => {
 				event.preventDefault();
 				go(index);
@@ -434,28 +426,35 @@
 			const outgoing = slides[current];
 			const incoming = slides[index];
 
-			incoming.style.zIndex = '4';
-			incoming.style.opacity = '0';
-
-			fade(incoming, 1, speed, () => {
-				outgoing.style.zIndex = '2';
-				outgoing.style.opacity = '0';
-				incoming.style.zIndex = '3';
-				busy = false;
-
-				if (queued !== null) {
-					const next = queued;
-					queued = null;
-					go(next);
-				} else {
-					schedule();
-				}
-			});
-
 			links[current].className = '';
 			links[index].className = 'selected';
 			current = index;
+
+			loadSlide(incoming).then(() => {
+				incoming.style.zIndex = '4';
+				incoming.style.opacity = '0';
+
+				fade(incoming, 1, speed, () => {
+					outgoing.style.zIndex = '2';
+					outgoing.style.opacity = '0';
+					incoming.style.zIndex = '3';
+					busy = false;
+
+					if (queued !== null) {
+						const next = queued;
+						queued = null;
+						go(next);
+					} else {
+						preloadNext();
+						schedule();
+					}
+				});
+			});
 		}
+
+		const preloadNext = () => {
+			if (slides.length > 1) loadSlide(slides[(current + 1) % slides.length]);
+		};
 
 		// Auto rotation pauses while hovered and resumes with the time that was left.
 		let timer;
@@ -502,14 +501,56 @@
 		}, { passive: true });
 
 		schedule();
+
+		// Fetch the second image once the page itself has finished loading.
+		if (document.readyState === 'complete') {
+			preloadNext();
+		} else {
+			window.addEventListener('load', preloadNext, { once: true });
+		}
 	}
 
-	const slideImages = $$('#full-scrn-slider img');
+	// Loads a slide's image (only the first has its source set in the HTML) and
+	// shows it as the slide's background, using the size the browser picked.
+	const slideLoads = new WeakMap();
 
-	Promise.all(slideImages.map((img) => img.complete ? null : new Promise((resolve) => {
-		img.addEventListener('load', resolve, { once: true });
-		img.addEventListener('error', resolve, { once: true });
-	}))).then(initSlider);
+	function loadSlide(slide) {
+		if (!slideLoads.has(slide)) {
+			const img = $('img', slide);
+
+			slideLoads.set(slide, !img ? Promise.resolve() : new Promise((resolve) => {
+				const done = () => {
+					const src = img.currentSrc || img.getAttribute('src');
+
+					if (src) {
+						slide.style.backgroundImage = 'url("' + src + '")';
+						slide.dataset.imageUrl = src;
+					}
+
+					img.remove();
+					resolve();
+				};
+
+				if (!img.getAttribute('src') && img.dataset.src) {
+					if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+					img.src = img.dataset.src;
+				}
+
+				if (img.complete) {
+					done();
+				} else {
+					img.addEventListener('load', done, { once: true });
+					img.addEventListener('error', done, { once: true });
+				}
+			}));
+		}
+
+		return slideLoads.get(slide);
+	}
+
+	const firstSlide = $('#full-scrn-slider .full-scrn-slide');
+
+	if (firstSlide) loadSlide(firstSlide).then(initSlider);
 
 
 	/***** Google Maps *****/
@@ -523,6 +564,16 @@
 		widget.addEventListener('click', () => setPointer('auto'));
 		widget.addEventListener('mouseleave', () => setPointer('none'));
 	});
+
+	// Maps load once they're about to scroll into view (or the content panel opens).
+	const mapObserver = new IntersectionObserver((entries) => {
+		entries.filter((entry) => entry.isIntersecting).forEach(({ target }) => {
+			target.src = target.dataset.src;
+			mapObserver.unobserve(target);
+		});
+	}, { rootMargin: '300px' });
+
+	$$('.wpb_gmaps_widget iframe[data-src]').forEach((frame) => mapObserver.observe(frame));
 
 
 	/***** Responsive *****/
