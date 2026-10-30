@@ -23,6 +23,12 @@ tabs:
               type: textarea
               display: Intro
           -
+            handle: description
+            field:
+              type: textarea
+              display: 'Meta description'
+              instructions: 'For search results. Defaults to the intro or content.'
+          -
             handle: content
             field:
               type: bard

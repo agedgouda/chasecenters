@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 	<title>{{ title | sanitize }} - Chase Centers</title>
+	{{ description = description ?? intro ?? content }}{{ if description }}<meta name="description" content="{{ description | strip_tags | trim | safe_truncate:160:... | sanitize }}" />{{ /if }}
 	<link rel="canonical" href="{{ permalink }}" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="website" />
@@ -14,10 +15,9 @@
 	<meta property="og:url" content="{{ permalink }}" />
 	<meta property="og:site_name" content="Chase Centers" />
 	<meta name="twitter:card" content="summary_large_image" />
-<link rel='preconnect' href='https://fonts.googleapis.com' />
-<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+<link rel='preload' href='{{ link to="/theme/chase/fonts/montserrat-latin.woff2" }}' as='font' type='font/woff2' crossorigin />
+<link rel='preload' href='{{ link to="/theme/chase/fonts/pontano-sans-latin.woff2" }}' as='font' type='font/woff2' crossorigin />
 {{ partial:partials/wp_styles }}
-<link rel='stylesheet' id='uxbarn-google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CPontano+Sans&#038;display=swap' media='all' />
 {{# Bundled and trimmed by scripts/build-theme-css.mjs #}}
 <link rel='stylesheet' id='chase-theme-css' href='{{ link to="/theme/chase/theme.css" }}' media='all' />
 {{ if map_query || site_plan }}

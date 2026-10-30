@@ -238,7 +238,7 @@ a, a:visited {
 }
 
 hr.pattern-divider {
-	background: url('images/pattern-divider.png') repeat-x left center;
+	background: url('images/pattern-divider.webp') repeat-x left center;
 	border: 0;
 	height: 9px;
 }
@@ -4887,7 +4887,7 @@ input[type=number] {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 	
 	hr.pattern-divider {
-		background: url('images/pattern-divider@2x.png') repeat-x left center;
+		background: url('images/pattern-divider@2x.webp') repeat-x left center;
 	}
 	
 	.uxb-port-loading-text {
