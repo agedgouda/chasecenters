@@ -1,0 +1,29 @@
+title: Company
+fields:
+  -
+    handle: tagline
+    field:
+      type: text
+      display: Tagline
+  -
+    handle: address
+    field:
+      type: list
+      display: Address
+      instructions: 'One line per item.'
+  -
+    handle: phone
+    field:
+      type: text
+      display: Telephone
+  -
+    handle: fax
+    field:
+      type: text
+      display: Facsimile
+  -
+    handle: email
+    field:
+      type: text
+      input_type: email
+      display: Email

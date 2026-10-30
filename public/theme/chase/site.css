@@ -1,0 +1,8 @@
+/* Native scrolling for the content panel; site.js draws the thin themed scrollbar over it. */
+#inner-content-container.chase-scroll {
+	scrollbar-width: none;
+}
+
+#inner-content-container.chase-scroll::-webkit-scrollbar {
+	display: none;
+}

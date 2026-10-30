@@ -1,0 +1,88 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      APP_ENV: production
+      APP_DEBUG: false
+    steps:
+      - uses: actions/checkout@v4
+
+      # base_url is https://<owner>.github.io/<repo> by default, or the custom
+      # domain once one is configured in the repo's Pages settings.
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Create environment file
+        run: |
+          cp .env.example .env
+          php -r "file_put_contents('.env', preg_replace('/^APP_KEY=.*$/m', 'APP_KEY=base64:'.base64_encode(random_bytes(32)), file_get_contents('.env')));"
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist --no-progress
+
+      - name: Build front-end assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: Generate static site
+        env:
+          APP_URL: ${{ steps.pages.outputs.base_url }}
+          SSG_FAILURES: errors
+        run: php please ssg:generate
+
+      # Pages are generated under the base path (e.g. storage/app/static/chasecenters),
+      # which is what GitHub serves at that path.
+      - name: Prepare Pages output
+        id: output
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          dir="storage/app/static${BASE_PATH}"
+          if [ -f "$dir/404/index.html" ] && [ ! -f "$dir/404.html" ]; then
+            cp "$dir/404/index.html" "$dir/404.html"
+          fi
+          touch "$dir/.nojekyll"
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.output.outputs.dir }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

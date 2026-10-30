@@ -1,0 +1,142 @@
+title: Page
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              display: Title
+          -
+            handle: heading
+            field:
+              type: text
+              display: Heading
+              instructions: 'Shown at the top of the content panel. Defaults to the title.'
+          -
+            handle: intro
+            field:
+              type: textarea
+              display: Intro
+          -
+            handle: content
+            field:
+              type: bard
+              display: Content
+              instructions: 'Free-form text shown below the intro (used on Contact Us).'
+              save_html: true
+              buttons:
+                - bold
+                - italic
+                - anchor
+          -
+            handle: slides
+            field:
+              type: assets
+              container: assets
+              display: 'Background Slides'
+              instructions: 'Full-screen images that crossfade behind the page.'
+      -
+        display: Property
+        fields:
+          -
+            handle: map_query
+            field:
+              type: text
+              display: 'Map Location'
+              instructions: 'Address or place name used for the embedded Google Map.'
+          -
+            handle: map_equal_height
+            field:
+              type: toggle
+              display: 'Equal-Height Map Row'
+          -
+            handle: site_plan
+            field:
+              type: assets
+              container: assets
+              max_files: 1
+              display: 'Site Plan'
+          -
+            handle: site_plan_divider
+            field:
+              type: toggle
+              display: 'Divider Under Site Plan Heading'
+          -
+            handle: site_plan_align
+            field:
+              type: button_group
+              display: 'Site Plan Alignment'
+              default: left
+              options:
+                left: Left
+                center: Center
+          -
+            handle: tenant_layout
+            field:
+              type: select
+              display: 'Tenant List Layout'
+              instructions: 'How the tenant list sits relative to the site plan.'
+              default: separate_row
+              options:
+                separate_row: 'Separate row'
+                nested_row: 'Nested row'
+                below_site_plan: 'Below site plan'
+                nested_below_site_plan: 'Nested row below site plan'
+          -
+            handle: trailing_spacer
+            field:
+              type: toggle
+              display: 'Extra Space After Tenant List'
+          -
+            handle: tenant_columns
+            field:
+              type: grid
+              display: 'Tenant Directory'
+              instructions: 'Each row is a column of the numbered list that matches the site plan.'
+              mode: stacked
+              fields:
+                -
+                  handle: start
+                  field:
+                    type: integer
+                    display: 'Start Number'
+                    default: 1
+                -
+                  handle: tenants
+                  field:
+                    type: grid
+                    display: Tenants
+                    mode: table
+                    fields:
+                      -
+                        handle: name
+                        field:
+                          type: text
+                          display: Name
+                      -
+                        handle: highlight
+                        field:
+                          type: toggle
+                          display: Available
+                          instructions: 'Shows the entry in red.'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: template
+            field:
+              type: template
+              display: Template

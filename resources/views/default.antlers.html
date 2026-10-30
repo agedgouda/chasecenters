@@ -1,1 +1,72 @@
-{{ content }}
+				<!-- Content Toggle Buttons -->
+				<div id="content-toggle-buttons">
+					<a href="javascript:;" id="hide-toggle-button"><i class="icon ion-ios-close-empty"></i></a>
+				</div>
+				<!-- Content Area -->
+				<div id="content-container" >
+					<div id="inner-content-container">
+						<!-- Page Intro -->
+						<div id="intro-wrapper" class="row">
+							<div class="uxb-col large-12 columns">
+								<h1 id="intro-title">{{ heading ?? title }}</h1>{{ if intro }}<p id="intro-body">{{ intro }}</p>{{ /if }}
+								<hr class="pattern-divider" />
+							</div>
+						</div>
+						<!-- Actual Content Area -->
+						<div id="actual-content-area" class="row">
+							<div id="content-wrapper" class="uxb-col  large-12  columns ">
+{{ if map_query || site_plan }}
+								<div class="wpb-content-wrapper">
+{{ if map_query }}
+<div class="vc_row wpb_row vc_row-fluid{{ if map_equal_height }} vc_row-o-equal-height vc_row-flex{{ /if }}"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element has-line">
+		<div class="wpb_wrapper">
+			<h1><strong>Map</strong></h1>
+		</div>
+	</div>
+<div class="wpb_gmaps_widget wpb_content_element vc_map_responsive"><div class="wpb_wrapper"><div class="wpb_map_wraper"><iframe loading="lazy" src="https://maps.google.com/maps?q={{ map_query | rawurlencode }}&#038;t=m&#038;z=15&#038;output=embed&#038;iwloc=near" title="{{ map_query }}" aria-label="{{ map_query }}"></iframe></div></div></div></div></div></div></div>
+{{ /if }}
+{{ if site_plan }}
+<div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element vc_custom_1553100149308 has-line">
+		<div class="wpb_wrapper">
+			<h1><strong>Site Plan</strong></h1>
+		</div>
+	</div>
+{{ if site_plan_divider }}
+	<div class="wpb_text_column wpb_content_element vc_custom_1553022320732">
+		<div class="wpb_wrapper">
+			<hr class="pattern-divider" />
+		</div>
+	</div>
+{{ /if }}
+</div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+{{ site_plan }}
+	<div  class="wpb_single_image wpb_content_element vc_align_{{ site_plan_align ?? 'left' }} wpb_content_element">
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey">{{ srcset = id | wp_srcset }}<img loading="lazy" decoding="async" width="{{ width }}" height="{{ height }}" src="{{ url }}" class="vc_single_image-img attachment-large" alt="" title="{{ title }}"{{ if srcset }} srcset="{{ srcset }}" sizes="auto, (max-width: {{ width }}px) 100vw, {{ width }}px"{{ /if }} /></div>
+		</figure>
+	</div>
+{{ /site_plan }}
+{{ if tenant_layout == 'below_site_plan' }}{{ tenant_columns }}{{ partial:partials/tenant_list }}{{ /tenant_columns }}{{ /if }}
+{{ if tenant_layout == 'nested_below_site_plan' }}<div class="vc_row wpb_row vc_inner vc_row-fluid">{{ partial:partials/tenant_columns }}</div>{{ /if }}
+</div></div></div></div>
+{{ if tenant_layout == 'separate_row' }}<div class="vc_row wpb_row vc_row-fluid">{{ partial:partials/tenant_columns }}</div>{{ /if }}
+{{ if tenant_layout == 'nested_row' }}<div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid">{{ partial:partials/tenant_columns }}</div></div></div></div></div>{{ /if }}
+{{ if trailing_spacer }}<div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element">
+		<div class="wpb_wrapper">
+		</div>
+	</div>
+</div></div></div></div>{{ /if }}
+{{ /if }}
+								</div>
+{{ /if }}
+{{ content | replace('<p>', '<p class="wp-block-paragraph">') }}
+							</div>
+						</div>
+						<!-- End id="actual-content-area" -->
+					</div>
+					<!-- End id="inner-content-container" -->
+				</div>
+				<!-- End id="content-container" -->

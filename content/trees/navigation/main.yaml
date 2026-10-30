@@ -1,0 +1,33 @@
+tree:
+  -
+    id: 4088c8f0-e0e4-44cb-a306-200063ea2b6b
+    entry: e2c8f272-6faa-4bf9-8ed6-88daf0bc2bf1
+    title: "Plaza del Amo – Torrance"
+  -
+    id: cb93614f-014b-47f7-bd00-fcd4bbd04d0c
+    entry: 80afe908-7818-4296-a96d-738a8ff73487
+    title: "The Marketplace – La Crescenta"
+  -
+    id: 12cb7155-3714-45c6-88c6-3cef022646dd
+    entry: 8e1962b7-4f61-4ed5-aa4a-479d01061e86
+    title: "The Marketplace – Alhambra"
+  -
+    id: fc53ab04-513b-4293-837b-159ae3e76393
+    entry: 54086700-044a-48cd-8b5d-080925bf50dd
+    title: "Spring Street – Long Beach"
+  -
+    id: cef450d2-ac25-41a7-a98f-c84c3855d4f9
+    entry: 6fb77afd-64f1-4670-a40d-4d46562a4f7b
+    title: "The Plaza at Ventura"
+  -
+    id: e560fcb9-7e18-451a-b684-1393180530ba
+    entry: 940cf79f-3fe6-4ab2-ba2c-3a90e2dabb00
+    title: "Ross Plaza – La Cañada"
+  -
+    id: 39888ce3-350b-4e0d-8a1e-8b1546474c4a
+    entry: 046e637b-5b27-4ec0-9b16-a314e4081d1b
+    title: "Company Profile"
+  -
+    id: 3ec20a02-a432-438b-a28d-4c12a6b005cc
+    entry: 150f7eb4-6dbf-45ec-9064-fc2d2b0a257b
+    title: "Contact Us"

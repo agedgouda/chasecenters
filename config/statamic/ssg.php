@@ -38,9 +38,11 @@ return [
     |
     */
 
-    'copy' => [
-        public_path('build') => 'build',
-    ],
+    // Pages are written under the APP_URL path (e.g. "chasecenters/" for a
+    // GitHub project page), so copied files must live there too.
+    'copy' => collect(['build', 'assets', 'theme', 'favicon.ico', 'robots.txt'])
+        ->mapWithKeys(fn ($file) => [public_path($file) => ltrim(trim((string) parse_url((string) env('APP_URL'), PHP_URL_PATH), '/').'/'.$file, '/')])
+        ->all(),
 
     'symlinks' => [
         // public_path('build') => 'build',
@@ -84,7 +86,7 @@ return [
     |
     */
 
-    'enforce_trailing_slashes' => false,
+    'enforce_trailing_slashes' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -126,7 +128,7 @@ return [
     |
     */
 
-    'failures' => false, // 'errors' or 'warnings'
+    'failures' => env('SSG_FAILURES', false), // 'errors' or 'warnings'
 
     /*
     |--------------------------------------------------------------------------

@@ -64,7 +64,7 @@ return [
         'assets' => [
             'driver' => 'local',
             'root' => public_path('assets'),
-            'url' => '/assets',
+            'url' => rtrim(parse_url((string) env('APP_URL'), PHP_URL_PATH) ?? '', '/').'/assets',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

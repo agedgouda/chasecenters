@@ -1,13 +1,109 @@
-<!doctype html>
-<html lang="{{ site:short_locale }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ (title ?? site:name) | sanitize }}</title>
-        {{ vite src="resources/js/site.js|resources/css/site.css" }}
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en-US"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en-US"><!--<![endif]-->
+	<head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+	<title>{{ title | sanitize }} - Chase Centers</title>
+	<link rel="canonical" href="{{ permalink }}" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{{ title | sanitize }} - Chase Centers" />
+	<meta property="og:url" content="{{ permalink }}" />
+	<meta property="og:site_name" content="Chase Centers" />
+	<meta name="twitter:card" content="summary_large_image" />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//code.ionicframework.com' />
+{{ partial:partials/wp_styles }}
+<link rel='stylesheet' id='uxbarn-google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CPontano+Sans' media='all' />
+<link rel='stylesheet' id='uxbarn-reset-css' href='{{ link to="/theme/kose/css/reset.css" }}' media='all' />
+<link rel='stylesheet' id='uxbarn-foundation-css' href='{{ link to="/theme/kose/css/foundation.css" }}' media='all' />
+<link rel='stylesheet' id='uxbarn-ionicons2-css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' media='all' />
+<link rel='stylesheet' id='uxbarn-flexslider-css' href='{{ link to="/theme/uxbarn-portfolio/css/flexslider.css" }}' media='all' />
+<link rel='stylesheet' id='uxbarn-theme-css' href='{{ link to="/theme/kose/style.css" }}' media='all' />
+<link rel='stylesheet' id='uxbarn-theme-responsive-css' href='{{ link to="/theme/kose/css/kose-responsive.css" }}' media='all' />
+<link rel='stylesheet' id='chase-site-css' href='{{ link to="/theme/chase/site.css" }}' media='all' />
+{{ if content }}
+<link rel='stylesheet' id='wp-block-paragraph-css' href='{{ link to="/theme/wp-includes/blocks/paragraph/style.min.css" }}' media='all' />
+{{ /if }}
+{{ if map_query || site_plan }}
+<link rel='stylesheet' id='js_composer_front-css' href='{{ link to="/theme/js_composer/assets/css/js_composer.min.css" }}' media='all' />
+{{ /if }}
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+{{ partial:partials/theme_styles }}
+{{ if is_homepage }}{{ partial:partials/slider_bullet_styles }}{{ /if }}
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<link rel="icon" href="{{ link to="/assets/2014/06/chasefav-60x60.jpg" }}" sizes="32x32" />
+<link rel="icon" href="{{ link to="/assets/2014/06/chasefav.jpg" }}" sizes="192x192" />
+<link rel="apple-touch-icon" href="{{ link to="/assets/2014/06/chasefav.jpg" }}" />
+<meta name="msapplication-TileImage" content="{{ link to="/assets/2014/06/chasefav.jpg" }}" />
+{{ if site_plan }}<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1553100149308{margin-bottom: 0px !important;padding-bottom: 0px !important;}{{ if site_plan_divider }}.vc_custom_1553022320732{margin-top: 0px !important;padding-top: 0px !important;}{{ /if }}</style>{{ /if }}
+<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+<meta name="google-site-verification" content="RqZO2T71eObE5DilqGi7i6JabH3MC9z_4x4j3kdD5IQ"/>
     </head>
-    <body class="antialiased bg-zinc-100 font-sans leading-normal text-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
-        {{ template_content }}
-    </body>
+	<body id="theme-body" class="{{ if is_homepage }}home {{ /if }}wp-singular page-template-default page wp-theme-Kose {{ if is_homepage }}no-content-area {{ /if }}wpb-js-composer js-comp-ver-8.7.2 vc_responsive">
+		<div id="dummy-slide-image" class="full-scrn"></div>
+		<div id="video-container"></div>
+		<!-- Full Screen Image/Slider -->
+		<div id="full-scrn-slider-container">
+			<div id="full-scrn-slider" data-auto-rotation="5000" data-effect="crossfade" data-transition-speed="1000">
+			{{ slides }}<div class="full-scrn-slide full-scrn" >
+							{{ srcset = id | wp_srcset }}<img width="{{ width }}" height="{{ height }}" src="{{ url }}" class="attachment-theme-fullscreen-image size-theme-fullscreen-image" alt="" decoding="async"{{ if first }} fetchpriority="high"{{ /if }}{{ if srcset }} srcset="{{ srcset }}" sizes="(max-width: {{ width }}px) 100vw, {{ width }}px"{{ /if }} />
+						</div>{{ /slides }}
+			</div>
+			<!-- End id="full-scrn-slider" -->
+			<div id="full-scrn-bullets"></div>
+		</div>
+		<!-- End id="full-scrn-slider-container" -->
+
+		<div id="root-container">
+			<div id="inner-container">
+				<!-- Side Panel -->
+				<div id="side-container">
+					<div id="logo-wrapper">
+						<a href="{{ link to="/" }}">
+							<img src="{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.png" }}" alt="Chase Centers" title="Chase Centers" width="200" height="132" />
+						</a>
+						<span id="tagline">{{ company:tagline }}</span>
+					</div>
+					<div id="menu-wrapper">
+						<ul id="menu-main" class="sf-menu sf-vertical">{{ nav:main }}<li class="menu-item menu-item-type-post_type menu-item-object-page{{ if is_current }} current-menu-item page_item current_page_item{{ /if }}"><a href="{{ url }}"{{ if is_current }} aria-current="page"{{ /if }}>{{ title }}</a></li>
+{{ /nav:main }}</ul>
+						<nav id="mobile-menu" class="top-bar" data-topbar>
+							<ul class="title-area">
+								<!-- Do not remove this list item -->
+								<li class="name"></li>
+								<!-- Menu toggle button -->
+								<li class="toggle-topbar menu-icon">
+									<a href="#"><span>Menu</span></a>
+								</li>
+							</ul>
+							<!-- Mobile menu's container -->
+							<div class="top-bar-section"></div>
+						</nav>
+					</div>
+					<div id="side-footer-wrapper">
+						<!-- Copyright Text -->
+						<span id="copyright">
+							{{ company:address }}<p>{{ value }}</p>{{ /company:address }}<p>Telephone {{ company:phone }}</p><p>Facsimile {{ company:fax }}</p><p><a href="mailto:{{ company:email }}">{{ company:email }}</a></p><p>&copy; Chase Centers</p>
+						</span>
+					</div>
+				</div>
+				<!-- END: id="side-container" -->
+{{ template_content }}
+			</div>
+			<!-- End id="inner-container" -->
+		</div>
+		<!-- End id="root-container" -->
+
+		<div id="loading-bg">
+			<img src="{{ link to="/theme/kose/images/loading-bg.gif" }}" alt="Loading" />
+		</div>
+<script>
+var ThemeOptions = {"swipe_text":"Swipe up for more","content_scrollbar_color":"#ffd769"};
+</script>
+<script id="chase-site-js" src="{{ link to="/theme/chase/site.js" }}"></script>
+	</body>
 </html>
