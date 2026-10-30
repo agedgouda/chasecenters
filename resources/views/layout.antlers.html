@@ -15,8 +15,7 @@
 	<meta property="og:url" content="{{ permalink }}" />
 	<meta property="og:site_name" content="Chase Centers" />
 	<meta name="twitter:card" content="summary_large_image" />
-<link rel='preload' href='{{ link to="/theme/chase/fonts/montserrat-latin.woff2" }}' as='font' type='font/woff2' crossorigin />
-<link rel='preload' href='{{ link to="/theme/chase/fonts/pontano-sans-latin.woff2" }}' as='font' type='font/woff2' crossorigin />
+{{# The logo is the LCP element on mobile, so fetch it ahead of the hero image #}}<link rel='preload' href='{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.svg" }}' as='image' type='image/svg+xml' fetchpriority='high' />
 {{ partial:partials/wp_styles }}
 {{# Bundled and trimmed by scripts/build-theme-css.mjs #}}
 <link rel='stylesheet' id='chase-theme-css' href='{{ link to="/theme/chase/theme.css" }}' media='all' />
@@ -58,7 +57,7 @@
 				<div id="side-container">
 					<div id="logo-wrapper">
 						<a href="{{ link to="/" }}">
-							<img src="{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.svg" }}" alt="Chase Centers" title="Chase Centers" width="200" height="132" />
+							<img src="{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.svg" }}" alt="Chase Centers" title="Chase Centers" width="200" height="132" fetchpriority="high" />
 						</a>
 						<span id="tagline">{{ company:tagline }}</span>
 					</div>
