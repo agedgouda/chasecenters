@@ -107,18 +107,19 @@ tabs:
               mode: stacked
               fields:
                 -
-                  handle: start
-                  field:
-                    type: integer
-                    display: 'Start Number'
-                    default: 1
-                -
                   handle: tenants
                   field:
                     type: grid
                     display: Tenants
                     mode: table
                     fields:
+                      -
+                        handle: number
+                        field:
+                          type: tenant_number
+                          display: Number
+                          instructions: 'The number on the site plan. New tenants start at one more than the highest number.'
+                          width: 25
                       -
                         handle: name
                         field:

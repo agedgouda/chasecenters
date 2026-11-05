@@ -1,104 +1,129 @@
 ---
 id: 54086700-044a-48cd-8b5d-080925bf50dd
-title: "Spring Street - Long Beach"
 blueprint: pages
-intro: "Spring Street is a Grocery-Anchored Neighborhood Shopping Center located at the intersection of Spring Street and Palo Verde Avenue in Long Beach, California. This property is anchored by Grocery Outlet, Dollar Tree, and Auto Zone. Other tenants include Starbucks, Wells Fargo, Paw Shoppe Pet Store, Supercuts, Straw Hat Pizza and Postal Annex."
+title: 'Spring Street - Long Beach'
+intro: 'Spring Street is a Grocery-Anchored Neighborhood Shopping Center located at the intersection of Spring Street and Palo Verde Avenue in Long Beach, California. This property is anchored by Grocery Outlet, Dollar Tree, and Auto Zone. Other tenants include Starbucks, Wells Fargo, Paw Shoppe Pet Store, Supercuts, Straw Hat Pizza and Postal Annex.'
 slides:
   - 2014/06/longbeach3.jpg
   - 2014/06/ChaseLongBeach2024CHOICE025.jpg
   - 2014/06/ChaseLongBeach2024CHOICE023.jpg
   - 2014/06/ChaseLongBeach2024CHOICE002.jpg
-map_query: "Spring Street &amp; Palo Verde Ave, Long Beach, CA"
+map_query: 'Spring Street &amp; Palo Verde Ave, Long Beach, CA'
 site_plan: 2024/07/Spring-Street-1024x548.png
 site_plan_align: left
 tenant_layout: nested_below_site_plan
 trailing_spacer: true
 tenant_columns:
   -
-    start: 1
     tenants:
       -
-        name: "TENNI MOC’S"
+        number: 1
+        name: 'TENNI MOC’S'
         highlight: false
       -
-        name: "Z ULTIMATE SELF DEFENSE"
+        number: 2
+        name: 'Z ULTIMATE SELF DEFENSE'
         highlight: false
       -
-        name: "WARD CHIROPRACTOR"
+        number: 3
+        name: 'WARD CHIROPRACTOR'
         highlight: false
       -
-        name: "FLAME BROILER"
+        number: 4
+        name: 'FLAME BROILER'
         highlight: false
       -
-        name: "SUPERCUTS"
+        number: 5
+        name: SUPERCUTS
         highlight: false
       -
-        name: "STRAW HAT PIZZA"
+        number: 6
+        name: 'STRAW HAT PIZZA'
         highlight: false
       -
-        name: "STRAW HAT PIZZA"
+        number: 7
+        name: 'STRAW HAT PIZZA'
         highlight: false
       -
-        name: "DENTAL OFFICE"
+        number: 8
+        name: 'DENTAL OFFICE'
         highlight: false
       -
-        name: "POSTAL ANNEX"
+        number: 9
+        name: 'POSTAL ANNEX'
         highlight: false
       -
-        name: "JACOB’S HAIR STUDIO"
+        number: 10
+        name: 'JACOB’S HAIR STUDIO'
         highlight: false
       -
-        name: "JBELLA THREADING"
+        number: 11
+        name: 'JBELLA THREADING'
         highlight: false
       -
-        name: "LA COCINA"
+        number: 12
+        name: 'LA COCINA'
         highlight: false
       -
-        name: "9ROUND FITNESS"
+        number: 13
+        name: '9ROUND FITNESS'
         highlight: false
       -
-        name: "AUTO ZONE"
+        number: 14
+        name: 'AUTO ZONE'
         highlight: false
   -
-    start: 15
     tenants:
       -
-        name: "AVAILABLE (1,780 SF)"
+        number: 15
+        name: 'AVAILABLE (1,780 SF)'
         highlight: true
       -
-        name: "GROCERY OUTLET"
+        number: 16
+        name: 'GROCERY OUTLET'
         highlight: false
       -
-        name: "DOLLARTREE"
+        number: 17
+        name: DOLLARTREE
         highlight: false
       -
-        name: "POKE KAI"
+        number: 18
+        name: 'POKE KAI'
         highlight: false
       -
-        name: "YOGURTLAND"
+        number: 19
+        name: YOGURTLAND
         highlight: false
       -
-        name: "SHORELINE MEDICAL"
+        number: 20
+        name: 'SHORELINE MEDICAL'
         highlight: false
       -
-        name: "SHORELINE MEDICAL"
+        number: 21
+        name: 'SHORELINE MEDICAL'
         highlight: false
       -
-        name: "AW SHOPPE"
+        number: 22
+        name: 'AW SHOPPE'
         highlight: false
       -
-        name: "NAIL SALON"
+        number: 23
+        name: 'NAIL SALON'
         highlight: false
       -
-        name: "NAIL SALON"
+        number: 24
+        name: 'NAIL SALON'
         highlight: false
       -
-        name: "AVAILABLE (16,270 SF)"
+        number: 25
+        name: 'AVAILABLE (16,270 SF)'
         highlight: true
       -
-        name: "STARBUCKS"
+        number: 26
+        name: STARBUCKS
         highlight: false
       -
-        name: "WELLS FARGO"
+        number: 27
+        name: 'WELLS FARGO'
         highlight: false
 ---

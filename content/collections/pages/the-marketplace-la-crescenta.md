@@ -14,92 +14,111 @@ tenant_layout: separate_row
 tenant_columns:
   -
     id: GKWCmKsG
-    start: 1
     tenants:
       -
+        number: 1
         id: ua3rPGCI
         name: RALPH’S
         highlight: false
       -
+        number: 2
         id: aUcscFf7
         name: 'VERIZON WIRELESS'
         highlight: false
       -
+        number: 3
         id: 89C4g1dz
         name: 'LESLIE’S POOL SUPPLY'
         highlight: false
       -
+        number: 4
         id: GrVIUr02
         name: 'U. S. BANK'
         highlight: false
       -
+        number: 5
         id: kqGgUr2x
         highlight: false
       -
+        number: 6
         id: iSvX19zv
         name: 'HAN’S BEAUTY STORE'
         highlight: false
       -
+        number: 7
         id: 7ugdeoFH
         name: HALLMARK
         highlight: false
       -
+        number: 8
         id: g5XuFiJG
         name: 'BAJA FRESH'
         highlight: false
       -
+        number: 9
         id: CzqvB4oR
         name: HAIRMASTERS
         highlight: false
       -
+        number: 10
         id: kb5SYYqJ
         name: GAMESTOP
         highlight: false
       -
+        number: 11
         id: Or5e4RXa
         name: 'LITTLE CAESAR (1,400 SF AVAILABLE FEB. 2021)'
         highlight: true
       -
+        number: 12
         id: I279OadU
         name: 'UPS STORE'
         highlight: false
   -
     id: bqI0Ae66
-    start: 13
     tenants:
       -
+        number: 13
         id: vpY7dVKF
         name: STARBUCKS
         highlight: false
       -
+        number: 14
         id: QJIYyy19
         name: CITIBANK
         highlight: false
       -
+        number: 15
         id: NXm1oJNQ
         name: 'O’REILLY AUTO'
         highlight: false
       -
+        number: 16
         id: YeGN3y7K
         name: 'FOSTER’ DONUTS'
         highlight: false
       -
+        number: 17
         id: lSxjLfrI
         name: 'TOGO’S/BASKIN ROBBINS'
         highlight: false
       -
+        number: 18
         id: 7K2KtdMq
         name: 'CRESCENTA OPTOMETRY'
         highlight: false
       -
+        number: 19
         id: Gk1isyvr
         name: 'ROSEMONT DENTAL'
         highlight: false
       -
+        number: 20
         id: MScjl38w
         name: 'U.S. BANK (KIOSK)'
         highlight: false
       -
+        number: 21
         id: Vbg1Kve7
         name: GNC
         highlight: false
