@@ -2,7 +2,7 @@
 id: 80afe908-7818-4296-a96d-738a8ff73487
 blueprint: pages
 title: 'The Marketplace - La Crescenta'
-intro: "The Marketplace is a Grocery-Anchored Neighborhood Shopping Center located on Foothill Boulevard in La Crescenta, California. This property is anchored by Ralphs. Other tenants include Citibank, Starbucks, Baja Fresh, O'Reilly Auto, Togo's/Baskin Robbins and the Mathnasium."
+intro: "The Marketplace is a Grocery-Anchored Neighborhood Shopping Center located on Foothill Boulevard in La Crescenta, California. This property is anchored by Ralphs. Other tenants include Citibank, Starbucks, Baja Fresh, O'Reilly Auto, Togo's/Baskin Robbins and Mathnasium."
 slides:
   - 2014/06/lacanada10.jpg
   - 2014/06/lacanada6.jpg
@@ -107,5 +107,5 @@ map_equal_height: false
 site_plan_divider: false
 trailing_spacer: false
 updated_by: dff6697b-439c-4c68-8db0-0c753d09cbd9
-updated_at: 1793916229
+updated_at: 1793916298
 ---
