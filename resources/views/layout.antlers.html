@@ -17,10 +17,10 @@
 	<meta name="twitter:card" content="summary_large_image" />
 {{# The logo is the LCP element on mobile, so fetch it ahead of the hero image #}}<link rel='preload' href='{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.svg" }}' as='image' type='image/svg+xml' fetchpriority='high' />
 {{ partial:partials/wp_styles }}
-{{# Bundled and trimmed by scripts/build-theme-css.mjs #}}
-<link rel='stylesheet' id='chase-theme-css' href='{{ link to="/theme/chase/theme.css" }}' media='all' />
+{{# Bundled and trimmed by scripts/build-theme-css.mjs; inlined so they don't block rendering #}}
+{{ inline_css src="/theme/chase/theme.css" id="chase-theme-css" }}
 {{ if map_query || site_plan }}
-<link rel='stylesheet' id='js_composer_front-css' href='{{ link to="/theme/chase/vc.css" }}' media='all' />
+{{ inline_css src="/theme/chase/vc.css" id="js_composer_front-css" }}
 {{ /if }}
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 {{ partial:partials/theme_styles }}
