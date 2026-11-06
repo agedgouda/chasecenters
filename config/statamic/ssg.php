@@ -40,8 +40,14 @@ return [
 
     // Pages are written under the APP_URL path (e.g. "chasecenters/" for a
     // GitHub project page), so copied files must live there too.
+    // The production build gets a robots.txt that allows indexing; every
+    // other build keeps public/robots.txt, which blocks it (see config/site.php).
     'copy' => collect(['build', 'assets', 'theme', 'favicon.ico', 'robots.txt'])
-        ->mapWithKeys(fn ($file) => [public_path($file) => ltrim(trim((string) parse_url((string) env('APP_URL'), PHP_URL_PATH), '/').'/'.$file, '/')])
+        ->mapWithKeys(fn ($file) => [
+            ($file === 'robots.txt' && (require __DIR__.'/../site.php')['indexable']
+                ? resource_path('robots/production.txt')
+                : public_path($file)) => ltrim(trim((string) parse_url((string) env('APP_URL'), PHP_URL_PATH), '/').'/'.$file, '/'),
+        ])
         ->all(),
 
     'symlinks' => [
