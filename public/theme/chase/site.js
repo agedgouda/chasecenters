@@ -232,8 +232,11 @@
 
 	/***** Sidebar footer *****/
 
-	sideFooter?.insertAdjacentHTML('beforeend',
-		'<div id="scroll-down-notice">' + ThemeOptions.swipe_text + ' <i class="icon ion-ios-arrow-up"></i></div>');
+	// The notice is in the page's HTML so the footer doesn't change size after the first paint.
+	if (!$('#scroll-down-notice')) {
+		sideFooter?.insertAdjacentHTML('beforeend',
+			'<div id="scroll-down-notice">' + ThemeOptions.swipe_text + ' <i class="icon ion-ios-arrow-up"></i></div>');
+	}
 
 	const notice = $('#scroll-down-notice');
 	const footerItems = () => $$('#side-footer-wrapper #copyright, #side-footer-wrapper .bar-social');

@@ -84,6 +84,7 @@
 						<span id="copyright">
 							{{ company:address }}<p>{{ value }}</p>{{ /company:address }}<p>Telephone {{ company:phone }}</p><p>Facsimile {{ company:fax }}</p><p><a href="mailto:{{ company:email }}">{{ company:email }}</a></p><p>&copy; Chase Centers</p>
 						</span>
+						{{# In the HTML (not added by site.js) so the phone footer is laid out from the first paint #}}<div id="scroll-down-notice">Swipe up for more <i class="icon ion-ios-arrow-up"></i></div>
 					</div>
 				</div>
 				<!-- END: id="side-container" -->
