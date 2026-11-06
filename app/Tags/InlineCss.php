@@ -26,14 +26,25 @@ class InlineCss extends Tags
         $base = rtrim((string) parse_url((string) config('app.url'), PHP_URL_PATH), '/');
         $dir = dirname($src);
 
-        $css = preg_replace_callback('/url\(\s*([\'"]?)([^\'")]+)\1\s*\)/', function ($m) use ($base, $dir) {
+        // Files to embed as data URIs (e.g. a font needed for the first paint).
+        $embed = array_filter(array_map('trim', explode(',', (string) $this->params->get('embed'))));
+
+        $css = preg_replace_callback('/url\(\s*([\'"]?)([^\'")]+)\1\s*\)/', function ($m) use ($base, $dir, $embed) {
             $url = $m[2];
 
             if (preg_match('#^(data:|https?:|//|/|\#)#i', $url)) {
                 return $m[0];
             }
 
-            return 'url('.$m[1].$base.$this->resolve($dir, $url).$m[1].')';
+            $path = $this->resolve($dir, $url);
+
+            if (in_array($url, $embed, true) && is_file($embedded = public_path(ltrim($path, '/')))) {
+                $type = mime_content_type($embedded) ?: 'application/octet-stream';
+
+                return 'url(data:'.$type.';base64,'.base64_encode(file_get_contents($embedded)).')';
+            }
+
+            return 'url('.$m[1].$base.$path.$m[1].')';
         }, file_get_contents($file));
 
         $id = $this->params->get('id');

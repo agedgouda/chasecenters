@@ -18,7 +18,8 @@
 {{# The logo is the LCP element on mobile, so fetch it ahead of the hero image #}}<link rel='preload' href='{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.svg" }}' as='image' type='image/svg+xml' fetchpriority='high' />
 {{ partial:partials/wp_styles }}
 {{# Bundled and trimmed by scripts/build-theme-css.mjs; inlined so they don't block rendering #}}
-{{ inline_css src="/theme/chase/theme.css" id="chase-theme-css" }}
+{{# The body font is embedded so text never shifts when it arrives #}}
+{{ inline_css src="/theme/chase/theme.css" id="chase-theme-css" embed="fonts/pontano-sans-latin.woff2" }}
 {{ if map_query || site_plan }}
 {{ inline_css src="/theme/chase/vc.css" id="js_composer_front-css" }}
 {{ /if }}
@@ -98,6 +99,6 @@
 <script>
 var ThemeOptions = {"swipe_text":"Swipe up for more","content_scrollbar_color":"#ffd769"};
 </script>
-<script id="chase-site-js" src="{{ link to="/theme/chase/site.js" }}"></script>
+{{ inline_js src="/theme/chase/site.js" id="chase-site-js" }}
 	</body>
 </html>
