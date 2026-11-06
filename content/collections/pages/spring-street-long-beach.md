@@ -2,7 +2,7 @@
 id: 54086700-044a-48cd-8b5d-080925bf50dd
 blueprint: pages
 title: 'Spring Street - Long Beach'
-intro: 'Spring Street is a Grocery-Anchored Neighborhood Shopping Center located at the intersection of Spring Street and Palo Verde Avenue in Long Beach, California. This property is anchored by Grocery Outlet, Dollar Tree, and Auto Zone. Other tenants include Starbucks, Wells Fargo, Paw Shoppe Pet Store, Supercuts, Straw Hat Pizza and Postal Annex .'
+intro: 'Spring Street is a Grocery-Anchored Neighborhood Shopping Center located at the intersection of Spring Street and Palo Verde Avenue in Long Beach, California. This property is anchored by Grocery Outlet, Dollar Tree, and Auto Zone. Other tenants include Starbucks, Wells Fargo, Paw Shoppe Pet Store, Supercuts, Straw Hat Pizza and Postal Annex.'
 slides:
   - 2014/06/longbeach3.jpg
   - 2014/06/ChaseLongBeach2024CHOICE025.jpg
@@ -158,5 +158,5 @@ tenant_columns:
 map_equal_height: false
 site_plan_divider: false
 updated_by: dff6697b-439c-4c68-8db0-0c753d09cbd9
-updated_at: 1793999438
+updated_at: 1793999518
 ---
