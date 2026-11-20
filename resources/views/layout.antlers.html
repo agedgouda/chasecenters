@@ -6,15 +6,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         {{# Only the chasecenters.com build is indexable; see config/site.php. #}}<meta name='robots' content='{{ if config:site:indexable }}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{{ else }}noindex, nofollow{{ /if }}' />
-	<title>{{ title | sanitize }} - Chase Centers</title>
-	{{ description = description ?? intro ?? content }}{{ if description }}<meta name="description" content="{{ description | strip_tags | trim | safe_truncate:160:... | sanitize }}" />{{ /if }}
+	<title>{{ if is_homepage }}Chase Centers{{ else }}{{ title | sanitize }} - Chase Centers{{ /if }}</title>
+	{{ description = description ?? intro ?? content }}{{ if description }}{{ meta_description = description | strip_tags | trim | safe_truncate:160:... | sanitize }}<meta name="description" content="{{ meta_description }}" />{{ /if }}
 	<link rel="canonical" href="{{ permalink }}" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="{{ title | sanitize }} - Chase Centers" />
+	<meta property="og:title" content="{{ if is_homepage }}Chase Centers{{ else }}{{ title | sanitize }} - Chase Centers{{ /if }}" />
+	{{ if meta_description }}<meta property="og:description" content="{{ meta_description }}" />{{ /if }}
 	<meta property="og:url" content="{{ permalink }}" />
 	<meta property="og:site_name" content="Chase Centers" />
-	<meta name="twitter:card" content="summary_large_image" />
+	{{ og_image = {seo:image} }}{{ if og_image }}<meta property="og:image" content="{{ og_image }}" />{{ /if }}
+	<meta name="twitter:card" content="{{ if og_image }}summary_large_image{{ else }}summary{{ /if }}" />
+	{{ seo:json_ld }}
 {{# The logo is the LCP element on mobile, so fetch it ahead of the hero image #}}<link rel='preload' href='{{ link to="/assets/2014/06/chasecenterlogowhitefont-1.svg" }}' as='image' type='image/svg+xml' fetchpriority='high' />
 {{ partial:partials/wp_styles }}
 {{# Bundled and trimmed by scripts/build-theme-css.mjs; inlined so they don't block rendering #}}
