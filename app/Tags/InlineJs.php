@@ -14,7 +14,7 @@ class InlineJs extends Tags
     {
         $file = public_path(ltrim((string) $this->params->get('src'), '/'));
 
-        if (! is_file($file)) {
+        if (! is_file($file) || ! str_starts_with((string) realpath($file), realpath(public_path()).DIRECTORY_SEPARATOR)) {
             return '';
         }
 

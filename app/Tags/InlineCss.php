@@ -19,7 +19,7 @@ class InlineCss extends Tags
         $src = '/'.ltrim((string) $this->params->get('src'), '/');
         $file = public_path(ltrim($src, '/'));
 
-        if (! is_file($file)) {
+        if (! is_file($file) || ! str_starts_with((string) realpath($file), realpath(public_path()).DIRECTORY_SEPARATOR)) {
             return '';
         }
 
@@ -38,7 +38,7 @@ class InlineCss extends Tags
 
             $path = $this->resolve($dir, $url);
 
-            if (in_array($url, $embed, true) && is_file($embedded = public_path(ltrim($path, '/')))) {
+            if (in_array($url, $embed, true) && is_file($embedded = public_path(ltrim($path, '/'))) && str_starts_with((string) realpath($embedded), realpath(public_path()).DIRECTORY_SEPARATOR)) {
                 $type = mime_content_type($embedded) ?: 'application/octet-stream';
 
                 return 'url(data:'.$type.';base64,'.base64_encode(file_get_contents($embedded)).')';

@@ -5,10 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: {}
 
 concurrency:
   group: pages
@@ -17,11 +14,16 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
     env:
       APP_ENV: production
       APP_DEBUG: false
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       # base_url is https://<owner>.github.io/<repo> by default, or the custom
       # domain once one is configured in the repo's Pages settings.
@@ -78,6 +80,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
